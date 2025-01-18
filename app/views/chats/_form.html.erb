@@ -1,0 +1,6 @@
+<%= form_with model: Chat.new(''), local: false do |f| %>
+  <div>
+    <%= f.text_field :message, autocomplete: :off, placeholder: "enter message..." %>
+    <%= f.submit "Send" %>
+  </div>
+<% end %>
