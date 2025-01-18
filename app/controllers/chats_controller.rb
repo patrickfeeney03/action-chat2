@@ -7,7 +7,8 @@ class ChatsController < ApplicationController
     # @chat = ChatStore.build(chat_params)
     @chat = Chat.new(chat_params[:message])
     ChatStore.instance.chats.push(@chat) # instead of @chat.save
-    ActionCable.server.broadcast("chats_channel", @chat)
+    # ActionCable.server.broadcast("chats_channel", @chat)
+
     render json: {}, status: :no_content
   end
 

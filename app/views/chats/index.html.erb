@@ -1,10 +1,14 @@
 <div>
   <h1>Chats</h1>
   <div>
+
     <%= turbo_stream_from "chats" %>
+
     <div id="chats">
       <%= render @chats %>
     </div>
+
+
   </div>
   <%= render "form" %>
 </div>
