@@ -4,10 +4,12 @@ class ChatsController < ApplicationController
   end
 
   def create
-    # @chat = ChatStore.build(chat_params)
-    @chat = Chat.new(chat_params[:message])
+    puts "This is getting called"
+    # @chat = Chat.new(chat_params[:message])
+    @chat = Chat.new
+    @chat.set_message(chat_params[:message])
     ChatStore.instance.chats.push(@chat) # instead of @chat.save
-    # ActionCable.server.broadcast("chats_channel", @chat)
+    @chat.send_self
 
     render json: {}, status: :no_content
   end
