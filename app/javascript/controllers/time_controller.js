@@ -27,7 +27,7 @@ export default class extends Controller {
   timeAgoInWords(date, now) {
     const seconds = Math.round((now - date) / 1000); // Round to the nearest second
 
-    if (seconds < 60) return "just now";
+    if (seconds < 60) return "less than a minute ago";
     if (seconds < 120) return "1 minute ago";
 
     const minutes = Math.round(seconds / 60); // Round to the nearest minute
