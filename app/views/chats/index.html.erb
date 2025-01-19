@@ -1,14 +1,12 @@
-<div>
-  <h1>Chats</h1>
+<div style="display: flex; flex-direction: column; height: 100vh; justify-content: space-between">
   <div>
-
-    <%= turbo_stream_from "chats" %>
-
-    <div id="chats">
-      <%= render @chats %>
+    <h1>Chats</h1>
+    <div>
+      <%= turbo_stream_from "chats" %>
+      <div id="chats">
+        <%= render @chats %>
+      </div>
     </div>
-
-
   </div>
   <%= render "form" %>
 </div>
