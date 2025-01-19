@@ -6,7 +6,7 @@
   <div id="chat-container" style="flex: 1; overflow-y: auto; text-wrap: auto;"
        data-controller="chat-scroll">
     <%= turbo_stream_from "chats" %>
-    <div id="chats">
+    <div id="chats" data-controller="time">
       <%= render @chats %>
     </div>
   </div>

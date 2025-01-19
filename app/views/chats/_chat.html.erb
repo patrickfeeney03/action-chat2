@@ -6,7 +6,7 @@
   <div>
     <%= chat.message %>
   </div>
-  <div>
+  <div data-time-target="time" data-timestamp="<%= chat.created_at.iso8601 %>">
     <%= time_ago_in_words(chat.created_at) %> ago
   </div>
 </div>
