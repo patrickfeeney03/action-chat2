@@ -1,5 +1,8 @@
 class ChatsController < ApplicationController
   def index
+    if session[:name].nil?
+      redirect_to names_path
+    end
     @chats = ChatStore.instance.chats # instead of Chat.all
     # @name = name_params
     # puts "The name is #{@name}"
