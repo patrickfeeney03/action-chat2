@@ -5,7 +5,7 @@
 
   <div style="flex: 1; overflow-y: auto;">
     <%= turbo_stream_from "chats" %>
-    <div id="chats" style="overflow-y: auto">
+    <div id="chats">
       <%= render @chats %>
     </div>
   </div>
