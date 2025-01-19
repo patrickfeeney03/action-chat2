@@ -3,7 +3,8 @@
     <h1>Chats</h1>
   </div>
 
-  <div style="flex: 1; overflow-y: auto;">
+  <div id="chat-container" style="flex: 1; overflow-y: auto; text-wrap: auto;"
+       data-controller="chat-scroll">
     <%= turbo_stream_from "chats" %>
     <div id="chats">
       <%= render @chats %>
