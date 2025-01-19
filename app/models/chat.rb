@@ -4,13 +4,19 @@ class Chat
 
   attr_accessor :message
   attr_accessor :created_at
+  attr_accessor :name
 
-  def initialize
+  def initialize(attributes = nil)
+    super
     @created_at = Time.new
   end
 
   def set_message(message)
     @message = message
+  end
+
+  def set_name(name)
+    @name = name
   end
   def send_self
     broadcast_append_to(

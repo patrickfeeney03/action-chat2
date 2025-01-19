@@ -1,13 +1,17 @@
 class ChatsController < ApplicationController
   def index
     @chats = ChatStore.instance.chats # instead of Chat.all
+    # @name = name_params
+    # puts "The name is #{@name}"
   end
 
   def create
     puts "This is getting called"
     # @chat = Chat.new(chat_params[:message])
-    @chat = Chat.new
-    @chat.set_message(chat_params[:message])
+    @chat = Chat.new(chat_params)
+    @chat.name = session[:name]
+    # @chat.set_message(chat_params[:message])
+    # @chat.set_name()
     ChatStore.instance.chats.push(@chat) # instead of @chat.save
     @chat.send_self
 
@@ -18,5 +22,9 @@ class ChatsController < ApplicationController
 
   def chat_params
     params.require(:chat).permit(:message)
+  end
+
+  def name_params
+    params.require(:name)
   end
 end
