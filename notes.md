@@ -4,3 +4,4 @@
 - [ ] Fix horizontal scrolling
 - [ ] Add people that are online
   - [ ] Destroy sessions after people close the browser/window
+- [ ] Fix the height on mobile.
