@@ -1,20 +1,15 @@
 class MessagesController < ApplicationController
   def index
-    if session[:name].nil?
-      redirect_to names_path
-    end
+    nil_session?
+    not_in_list_but_in_session?
+
     @messages = ChatStore.instance.messages # instead of Message.all
-    # @name = name_params
-    # puts "The name is #{@name}"
   end
 
   def create
     puts "This is getting called"
-    # @chat = Message.new(chat_params[:message])
     @message = Message.new(chat_params)
     @message.name = session[:name]["name"]
-    # @chat.set_message(chat_params[:message])
-    # @chat.set_name()
     ChatStore.instance.messages.push(@message) # instead of @chat.save
     @message.send_self
 
@@ -23,6 +18,31 @@ class MessagesController < ApplicationController
 
   private
 
+  def not_in_list_but_in_session?
+    user_session = session[:id]
+    user_store = ChatStore.instance.users.find { |curr_user| curr_user.id == session[:id] }
+    if !user_session.nil? && user_store.nil?
+      reset_session
+      redirect_to names_path
+    elsif !user_store.nil?
+      reset_session?
+    end
+  end
+
+  def nil_session?
+    if session[:id].nil?
+      redirect_to names_path
+    end
+  end
+
+  def reset_session?
+    user = ChatStore.instance.users.find { |curr_user| curr_user.id == session[:id] }
+    if user.reset_session == true
+      user.reset_session = false
+      reset_session
+      redirect_to names_path
+    end
+  end
   def chat_params
     params.require(:message).permit(:text)
   end

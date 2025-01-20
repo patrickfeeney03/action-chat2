@@ -5,7 +5,11 @@ class NamesController < ApplicationController
 
   def create
     @name = Name.new(name_params)
-    session[:name] = @name
+
+    user = User.new(name: @name, id: ChatStore.instance.user_count += 1)
+    session[:name] = user.name
+    session[:id] = user.id
+    ChatStore.instance.users.push user
     redirect_to messages_path
   end
 

@@ -24,7 +24,7 @@ class Message
       "messages",
       target: "messages",
       partial: "messages/message",
-      local: { text: self }
+      local: { text: self, user_id: 1 }
     )
   end
 end
