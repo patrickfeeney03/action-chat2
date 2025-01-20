@@ -6,7 +6,7 @@ class NamesController < ApplicationController
   def create
     @name = Name.new(name_params)
     session[:name] = @name
-    redirect_to chats_path
+    redirect_to messages_path
   end
 
   private

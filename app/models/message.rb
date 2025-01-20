@@ -1,8 +1,9 @@
-class Chat
+class Message
   include ActiveModel::API
   include Turbo::Broadcastable
 
-  attr_accessor :message
+  attr_accessor :user_id
+  attr_accessor :text
   attr_accessor :created_at
   attr_accessor :name
 
@@ -12,7 +13,7 @@ class Chat
   end
 
   def set_message(message)
-    @message = message
+    @text = message
   end
 
   def set_name(name)
@@ -20,10 +21,10 @@ class Chat
   end
   def send_self
     broadcast_append_to(
-      "chats",
-      target: "chats",
-      partial: "chats/chat",
-      local: { chat: self }
+      "messages",
+      target: "messages",
+      partial: "messages/message",
+      local: { text: self }
     )
   end
 end

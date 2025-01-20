@@ -1,13 +1,13 @@
 <div style="display: flex; flex-direction: column; height: 100vh;">
   <div>
-    <h1>Chats</h1>
+    <h1>The Room</h1>
   </div>
 
   <div id="chat-container" style="flex: 1; overflow-y: auto; text-wrap: auto;"
        data-controller="chat-scroll">
-    <%= turbo_stream_from "chats" %>
-    <div id="chats" data-controller="time">
-      <%= render @chats %>
+    <%= turbo_stream_from "messages" %>
+    <div id="messages" data-controller="time">
+      <%= render @messages %>
     </div>
   </div>
 

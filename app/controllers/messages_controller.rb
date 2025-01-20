@@ -1,22 +1,22 @@
-class ChatsController < ApplicationController
+class MessagesController < ApplicationController
   def index
     if session[:name].nil?
       redirect_to names_path
     end
-    @chats = ChatStore.instance.chats # instead of Chat.all
+    @messages = ChatStore.instance.messages # instead of Message.all
     # @name = name_params
     # puts "The name is #{@name}"
   end
 
   def create
     puts "This is getting called"
-    # @chat = Chat.new(chat_params[:message])
-    @chat = Chat.new(chat_params)
-    @chat.name = session[:name]["name"]
+    # @chat = Message.new(chat_params[:message])
+    @message = Message.new(chat_params)
+    @message.name = session[:name]["name"]
     # @chat.set_message(chat_params[:message])
     # @chat.set_name()
-    ChatStore.instance.chats.push(@chat) # instead of @chat.save
-    @chat.send_self
+    ChatStore.instance.messages.push(@message) # instead of @chat.save
+    @message.send_self
 
     render json: {}, status: :no_content
   end
@@ -24,7 +24,7 @@ class ChatsController < ApplicationController
   private
 
   def chat_params
-    params.require(:chat).permit(:message)
+    params.require(:message).permit(:text)
   end
 
   def name_params

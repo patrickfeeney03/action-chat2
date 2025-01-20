@@ -12,7 +12,7 @@ export default class extends Controller {
             this.update();
         });
 
-        observer.observe(this.element.querySelector("#chats"), {
+        observer.observe(this.element.querySelector("#messages"), {
             childList: true,
         });
 

@@ -1,0 +1,6 @@
+<%= form_with model: Message.new, data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset"} do |f| %>
+  <div>
+    <%= f.text_field :text, autocomplete: :off, placeholder: "enter message..." %>
+    <%= f.submit "Send" %>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+<div>
+  <div>
+    name:
+    <%= message.name %>
+  </div>
+  <div>
+    <%= message.text %>
+  </div>
+  <div data-time-target="time" data-timestamp="<%= message.created_at.iso8601 %>">
+    <%= time_ago_in_words(message.created_at) %> ago
+  </div>
+</div>
