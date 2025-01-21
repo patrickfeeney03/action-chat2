@@ -3,6 +3,11 @@ class MessagesController < ApplicationController
     nil_session?
     not_in_list_but_in_session?
 
+    user = ChatStore.instance.users.find { |curr_user| curr_user.id == session[:id] }
+    unless user.nil?
+      user.set_online
+    end
+
     @messages = ChatStore.instance.messages # instead of Message.all
   end
 

@@ -2,10 +2,15 @@ module ApplicationCable
   class Connection < ActionCable::Connection::Base
 
     def connect
-      # puts "********* #{request.session[:id]}"
-      # user = find_user
+
+    end
+
+    def subscribed
+      puts "***** USER SUBSCRIBED **************"
       @user = find_user
-      # puts "The ID of the user making the request is #{user.id}"
+      unless @user.nil?
+        @user.set_online
+      end
     end
 
     def disconnect
@@ -14,6 +19,7 @@ module ApplicationCable
       else
         puts "Deleting session for #{@user.name}"
         @user.reset_session = true
+        @user.set_offline
       end
     end
 

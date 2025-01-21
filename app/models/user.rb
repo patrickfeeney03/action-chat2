@@ -12,13 +12,19 @@ class User
     @message_ids = []
   end
 
-  def set_status
-    message = Message.new(text: "abc", name: "pat", created_at: Time.now, user_id: 2)
+  def set_online
     broadcast_append_to(
-      "messages",
-      target: "messages",
-      partial: "messages/message",
-      locals: { message: message, user_id: 2 }
+      "users",
+      target: "users",
+      partial: "users/user",
+      locals: { message: self, user_id: self.id }
+    )
+  end
+
+  def set_offline
+    broadcast_remove_to(
+      "users",
+    target: self
     )
   end
 end
