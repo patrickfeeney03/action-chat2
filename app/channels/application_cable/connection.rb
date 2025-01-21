@@ -14,6 +14,7 @@ module ApplicationCable
     end
 
     def disconnect
+      @user = find_user
       if @user.nil?
         puts "@user in connection.rb was nil."
       else

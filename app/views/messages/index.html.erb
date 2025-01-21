@@ -1,18 +1,23 @@
-<div style="display: flex; flex-direction: column; height: 100vh;">
-  <%= turbo_stream_from "users" %>
-  <div id="users"></div>
-
-  <div>
-    <h1>The Room</h1>
-  </div>
-
-  <div id="chat-container" style="flex: 1; overflow-y: auto; text-wrap: auto;"
-       data-controller="chat-scroll">
-    <%= turbo_stream_from "messages" %>
-    <div id="messages" data-controller="time">
-      <%= render @messages %>
+<div style="display: flex; flex-direction: row;">
+  <div style="display: flex; flex-direction: column; flex: 1;">
+    <h3>Connected Users</h3>
+    <%= turbo_stream_from "users" %>
+    <div id="users">
+      <%= render @users %>
     </div>
   </div>
 
-  <%= render "form" %>
+  <div style="display: flex; flex-direction: column; height: 100vh; flex: 3;">
+    <div>
+      <h1>The Room</h1>
+    </div>
+    <div id="chat-container" style="flex: 1; overflow-y: auto; text-wrap: auto;"
+        data-controller="chat-scroll">
+      <%= turbo_stream_from "messages" %>
+      <div id="messages" data-controller="time">
+        <%= render @messages %>
+      </div>
+    </div>
+    <%= render "form" %>
+  </div>
 </div>

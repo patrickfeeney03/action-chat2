@@ -17,14 +17,18 @@ class User
       "users",
       target: "users",
       partial: "users/user",
-      locals: { message: self, user_id: self.id }
+      locals: { message: self }
     )
   end
 
   def set_offline
+    # The problem with this, I think, is that the WS probably takes a while to disconnect, so the page refreshes before the WS disconnects and the user gets removed after being added? Idk.
+    puts "**** Removing User from ChatStore"
+    puts "**** Broadcast remove from WS"
+    ChatStore.instance.users.delete_if { |user| user.id == self.id }
     broadcast_remove_to(
       "users",
-    target: self
+    target: self # The target can't be "users" because that would delete the main target itself lol.
     )
   end
 end
